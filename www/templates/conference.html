@@ -1,0 +1,35 @@
+<ion-view view-title="Conference">
+  <ion-content>
+    <div class="list card">
+      <div class="item item-avatar">
+        <img src="img/mcfly.jpg">
+        <h2>{{conference.name}}</h2>
+        <p>{{conference.where}} | {{conference.when}}</p>
+      </div>
+
+      <div class="item item-body">
+        <img class="full-image" ng-if="!conference._attachments.conferenceImage" src="img/delorean.jpg">
+        <img class="full-image" ng-if="conference._attachments.conferenceImage" ng-src="data:image/jpeg;base64,{{conference._attachments.conferenceImage.data}}">
+
+        <p>{{conference.description}}</p>
+        <p>
+          <a href="#" class="subdued">{{conference.likes}} Likes</a>
+          <a href="#" class="subdued">{{conference.comments.length}} Comments</a>
+        </p>
+      </div>
+      <div class="item item-body" ng-repeat="conferenceComment in conference.comments track by $index">
+        <p>{{conferenceComment}}</p>
+      </div>
+    </div>
+    <div class="list light-grey form-message">
+      <div class="item item-input-inset light-grey">
+        <label  class="item-input-wrapper line-light-grey nopadtop">
+          <input class="line-light-grey" type="text"  placeholder="Comment" ng-enter="sendComment()" ng-model="comment">
+        </label>
+        <div class="divsend">
+          <button class="button button-clear ion-android-send icon-send" ng-click="sendComment()"></button>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

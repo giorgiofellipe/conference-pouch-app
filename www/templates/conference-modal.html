@@ -1,0 +1,37 @@
+<ion-modal-view>
+
+  <ion-header-bar class="bar bar-header bar-assertive">
+    <h1 class="title">New Conference</h1>
+    <button class="button button-icon button-clear ion-ios-close-empty" ng-click="closeModal()">
+    </button>
+  </ion-header-bar>
+
+  <ion-content class="padding">
+    <div class="list">
+      <label class="item item-input">
+        <span class="input-label">Name</span>
+        <input ng-model="conference.name" type="text" required>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Description</span>
+        <input ng-model="conference.description" type="text" required>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Where</span>
+        <input ng-model="conference.where" type="text" required>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">When</span>
+        <input ng-model="conference.when" type="text" required>
+      </label>
+      <img ng-src="{{imageSrc}}"/>
+      <button class="button button-block button-positive" ng-click="choosePhoto(conference)">Conference Image</button>
+      <div class="padding">
+        <button class="button button-block button-dark" ng-click="save(conference)">
+          Save
+        </button>
+      </div>
+    </div>
+  </ion-content>
+
+</ion-modal-view>

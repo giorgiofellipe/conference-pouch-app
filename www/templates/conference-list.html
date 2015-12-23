@@ -1,0 +1,41 @@
+<ion-view view-title="Conferences">
+  <ion-nav-buttons side="right">
+    <button class="button button-icon button-clear ion-plus" ng-click="showModal()">
+    </button>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-refresher pulling-text="Pull to refresh" on-refresh="refresh()"></ion-refresher>
+
+    <div class="list card" ng-repeat="conference in conferences track by $index">
+      <a ui-sref="app.conference({conferenceId: conference._id})">
+        <div class="item item-avatar">
+          <img src="img/mcfly.jpg">
+          <h2>{{conference.name}}</h2>
+          <p>{{conference.where}} | {{conference.when}}</p>
+        </div>
+
+        <div class="item item-body">
+          <img class="full-image" ng-if="!conference._attachments.conferenceImage" src="img/delorean.jpg">
+          <img class="full-image" ng-if="conference._attachments.conferenceImage" ng-src="data:image/jpeg;base64,{{conference._attachments.conferenceImage.data}}">
+
+          <p>{{conference.description}}</p>
+          <p>
+            <a href="#" class="subdued">{{conference.likes}} Likes</a>
+            <a href="#" class="subdued">{{conference.comments.length}} Comments</a>
+          </p>
+        </div>
+
+        <div class="item tabs tabs-secondary tabs-icon-left">
+          <a class="tab-item" ng-click="like(conference)">
+            <i class="icon ion-thumbsup"></i>
+            Like
+          </a>
+          <a class="tab-item" ui-sref="app.conference({conferenceId: conference._id})">
+            <i class="icon ion-chatbox"></i>
+            Comment
+          </a>
+        </div>
+      </a>
+    </div>
+  </ion-content>
+</ion-view>
